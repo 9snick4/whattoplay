@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <title>Postage Cost Calculator</title>
+</head>
+<body>
+    <form action="/getRate" method="get">
+        <div>
+            <label for="weight">Letter Weigth</label>
+            <input type="text" name="weight" id="weight">
+       </div>
+       <div>
+            <label for="letter">Letter Type</label>
+            <select name="letter" id="letter">
+                <option value="s">Letters (Stamped)</option>
+                <option value="m">Letters (Metered)</option>
+                <option value="f">Large Envelops (Flats)</option>
+                <option value="r">First-Class Package Service-Retail</option>
+            </select>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+</body>
+</html>

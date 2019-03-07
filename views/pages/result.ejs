@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="h3">
-        The total cost of your postage is <%=result%>.
+        The total cost of your postage is <%parseFloat(Math.round(result * 100) / 100).toFixed(2)%>$.
     </div>
 </body>
 </html>

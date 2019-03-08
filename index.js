@@ -39,15 +39,15 @@ app
         if (weight < 13) {
           return 1 + (0.15 * (Math.floor(weight) - 1))
         } else return "Not applicable";
-     /* case 'r':
-        if (weight < 1) {
-          return 0.55;
-        } else if (weight < 2) {
-          return 0.70;
-        } else if (weight < 3) {
-          return 0.85;
-        } else if (weight < 3.5) {
-          return 1.00;
-        } else return "Not applicable";*/
+     case 'r':
+        if (weight < 4) {
+          return 3.66;
+        } else if (weight < 8) {
+          return 4.39;
+        } else if (weight < 12) {
+          return 5.19;
+        } else if (weight < 13) {
+          return 5.71;
+        } else return "Not applicable";
     }
   }

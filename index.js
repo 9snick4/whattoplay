@@ -2,6 +2,7 @@ const connectionString = process.env.DATABASE_URL;
 const express = require('express')
 const path = require('path')
 const { Pool } = require('pg')
+const https = require('https')
 const pg = new Pool({connectionString: connectionString})
 const PORT = process.env.PORT || 5000
 const app = express()
@@ -21,7 +22,14 @@ function selectGame (req, res) {
   //format request string into json object
   var night = JSON.parse(req.query.night)
   //request game collection
-  $.get("https://www.boardgamegeek.com/xmlapi2/collection?own=1&username=" + night.hostusername, function(xml) {
+  
+  var options = {
+    host: "www.boardgamegeek.com",
+    path: "/xmlapi2/collectionown=1&username=" + night.hostusername,
+    method: "GET"
+
+  }
+  https.get(options, function(xml) {
     
     console.log("Back from BGG with result:");
     console.log(xml);

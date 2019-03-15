@@ -25,21 +25,29 @@ function selectGame (req, res) {
   
   var options = {
     host: "www.boardgamegeek.com",
-    path: "/xmlapi2/collectionown=1&username=" + night.hostusername,
-    method: "GET"
+    path: "/xmlapi2/collectionown=1&username=" + night.hostusername
 
   }
-  https.get(options, function(xml) {
+  https.get(options, function(err, result) {
+    console.log('STATUS: ' + res.statusCode);
+    console.log('HEADERS: ' + JSON.stringify(res.headers));
+    res.setEncoding('utf8');
+    res.on('data', function (chunk) {
+        console.log('BODY: ' + chunk);
+      });
+    });
+
+    req.on('error', function(e) {
+      console.log('problem with request: ' + e.message);
+    });
     
-    console.log("Back from BGG with result:");
-    console.log(xml);
   
     //format xml
-    var jsonCollection = xml2json(xml);
+   /* var jsonCollection = xml2json(xml);
     console.log("Back from xml2json with result:");
     console.log(json);
     //render game page with user collection 
-  })
+  })*/
    
 }
 function calculateRate(mailType, weight) {

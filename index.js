@@ -29,7 +29,7 @@ function listNight(req, res) {
       // Log this to the console for debugging purposes.
       console.log("Back from DB with result:");
       console.log(result.rows);
-      return true;
+      return result.rows;
 
   });  
 }

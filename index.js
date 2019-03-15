@@ -48,7 +48,7 @@ function selectGame (req, res) {
 }
 
 function httpRetry(username) {
-  https.get("https://www.boardgamegeek.com/xmlapi2/collectionown=1&username=" +username, function(err, result) {
+  https.get("https://www.boardgamegeek.com/xmlapi2/collection=1&username=" +username, function(err, result) {
     if(err || result.statusCode !== 200) {
       console.log("error:" + err.message)
       setTimeout(httpRetry, 10000, username)

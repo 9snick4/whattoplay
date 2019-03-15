@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="container">
+<h2>Game nights</h2>
+
+<ul>
+    <% result.forEach(function(r) { %>
+        <li><a href="/selectGame?night=<%= JSON.stringify(r) %>"><%= r.nightname %> - <%= r.hostusername %> (<%= r.hostname %>) - <%= r.day.getFullYear() %>/<%= r.day.getMonth() + 1%>/<%= r.day.getDay() %> </a></li>
+    <% }); %>
+</ul> 
+
+</div>
+
+</body>
+</html>

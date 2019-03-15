@@ -48,13 +48,14 @@ function selectGame (req, res) {
 }
 
 function httpRetry(username) {
-  https.get("https://www.boardgamegeek.com/xmlapi2/collection=1&username=" +username, function(err, result) {
-    if(err || result.statusCode !== 200) {
-      console.log("error:" + err.message)
+  console.log("username:" + username)
+  https.request("https://www.boardgamegeek.com/xmlapi2/collection=1&username=" +username, function(err, response, body) {
+    if(err || response.statusCode !== 200) {
+      console.log("fail")
       setTimeout(httpRetry, 10000, username)
-    }
+    } 
     else {
-      result.on('data', function (chunk) {
+      response.on('data', function (chunk) {
         console.log('BODY: ' + chunk);
       });
     }

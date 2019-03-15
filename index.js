@@ -54,7 +54,7 @@ function selectGame (req, res) {
 function httpRetry(options) {
   https.get(options, function(err, result) {
     if(err || result.statusCode !== 200) {
-      console.log("error:" + err)
+      console.log("error:" + err.message)
       setTimeout(httpRetry, 5000, options)
     }
     else {

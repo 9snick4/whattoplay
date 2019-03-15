@@ -27,7 +27,6 @@ function selectGame (req, res) {
     host: "www.boardgamegeek.com",
     path: "/xmlapi2/collectionown=1&username=" + night.hostusername,
     method: "GET"
-
   }
   https.get(options, function(xml) {
     
@@ -35,9 +34,9 @@ function selectGame (req, res) {
     console.log(xml);
   
     //format xml
-    var jsonCollection = xml2json(xml);
+    /*var jsonCollection = xml2json(xml);
     console.log("Back from xml2json with result:");
-    console.log(json);
+    console.log(json);*/
     //render game page with user collection 
   })
    

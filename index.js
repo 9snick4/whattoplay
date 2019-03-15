@@ -21,10 +21,8 @@ app
 function selectGame (req, res) {
   //format request string into json object
   var night = JSON.parse(req.query.night)
-  //request game collection
   
-  
-  httpRetry(night.hostusername)
+  res.render('pages/games', {night: night})
   /*
   https.get(options, function(err, result) {
     console.log('STATUS: ' + res.statusCode);
@@ -46,7 +44,7 @@ function selectGame (req, res) {
   })*/
    
 }
-
+/*
 function httpRetry(username) {
   console.log("username:" + username)
   https.request("https://www.boardgamegeek.com/xmlapi2/collection=1&username=" +username, function(err, response, body) {
@@ -60,7 +58,7 @@ function httpRetry(username) {
       });
     }
   })
-}
+}*/
 
 
 function calculateRate(mailType, weight) {

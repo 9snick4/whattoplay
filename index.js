@@ -57,10 +57,11 @@ function httpRetry(options) {
       console.log("error:" + err)
       setTimeout(httpRetry, 5000, options)
     }
-    result.on('data', function (chunk) {
-      console.log('BODY: ' + chunk);
-    });
-    
+    else {
+      result.on('data', function (chunk) {
+        console.log('BODY: ' + chunk);
+      });
+    }
   })
 }
 

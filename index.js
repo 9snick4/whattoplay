@@ -28,18 +28,18 @@ function selectGame (req, res) {
     path: "/xmlapi2/collectionown=1&username=" + night.hostusername
 
   }
+  httpRetry(options)
+  /*
   https.get(options, function(err, result) {
     console.log('STATUS: ' + res.statusCode);
     console.log('HEADERS: ' + JSON.stringify(res.headers));
     res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-        console.log('BODY: ' + chunk);
-      });
+    
     });
 
     req.on('error', function(e) {
       console.log('problem with request: ' + e.message);
-    });
+    });*/
     
   
     //format xml
@@ -50,6 +50,22 @@ function selectGame (req, res) {
   })*/
    
 }
+
+function httpRetry(options) {
+  https.get(options, function(err, result) {
+    if(err || result.statusCode !== 200) {
+      console.log("error:" + err)
+      setTimeout(httpRetry(options), 5000)
+    }
+    else {
+      res.on('data', function (chunk) {
+        console.log('BODY: ' + chunk);
+      });
+    }
+  })
+}
+
+
 function calculateRate(mailType, weight) {
   switch (mailType) {
     case 's':

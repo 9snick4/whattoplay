@@ -23,12 +23,8 @@ function selectGame (req, res) {
   var night = JSON.parse(req.query.night)
   //request game collection
   
-  var options = {
-    host: "www.boardgamegeek.com",
-    path: "/xmlapi2/collectionown=1&username=" + night.hostusername
-
-  }
-  httpRetry(options)
+  
+  httpRetry(night.hostusername)
   /*
   https.get(options, function(err, result) {
     console.log('STATUS: ' + res.statusCode);
@@ -51,11 +47,11 @@ function selectGame (req, res) {
    
 }
 
-function httpRetry(options) {
-  https.get(options, function(err, result) {
+function httpRetry(username) {
+  https.get("www.boardgamegeek.com/xmlapi2/collectionown=1&username=" +username, function(err, result) {
     if(err || result.statusCode !== 200) {
       console.log("error:" + err.message)
-      setTimeout(httpRetry, 5000, options)
+      setTimeout(httpRetry, 10000, username)
     }
     else {
       result.on('data', function (chunk) {

@@ -13,7 +13,7 @@
 
 <ul>
     <% result.forEach(function(r) { %>
-        <li><%= r.nightname %> - <%= r.hostusername %> (<%= r.hostname %>) - <%= r.day.substr(0, r.day.indextOf('T')) %> </li>
+        <li><%= r.nightname %> - <%= r.hostusername %> (<%= r.hostname %>) - <%= r.day.substr(0, r.day.indexOf('T')) %> </li>
     <% }); %>
 </ul> 
 

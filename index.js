@@ -55,13 +55,12 @@ function httpRetry(options) {
   https.get(options, function(err, result) {
     if(err || result.statusCode !== 200) {
       console.log("error:" + err)
-      setTimeout(httpRetry(options), 5000)
+      setTimeout(httpRetry, 5000, options)
     }
-    else {
-      res.on('data', function (chunk) {
-        console.log('BODY: ' + chunk);
-      });
-    }
+    res.on('data', function (chunk) {
+      console.log('BODY: ' + chunk);
+    });
+    
   })
 }
 

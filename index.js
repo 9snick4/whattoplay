@@ -1,7 +1,7 @@
 const connectionString = process.env.DATABASE_URL;
 const express = require('express')
 const path = require('path')
-const { Pool } = requrire('pg')
+const { Pool } = require('pg')
 const pg = new Pool({connectionString: connectionString})
 const PORT = process.env.PORT || 5000
 const app = express()

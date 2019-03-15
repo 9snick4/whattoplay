@@ -13,7 +13,7 @@
 
 <ul>
     <% result.forEach(function(r) { %>
-        <li><a href="/selectGame?nightId=<%= r.nightid %>"><%= r.nightname %> - <%= r.hostusername %> (<%= r.hostname %>) - <%= r.day.getFullYear() %>/<%= r.day.getMonth() + 1%>/<%= r.day.getDay() %> </a></li>
+        <li><a href="/selectGame?night=<%= r %>"><%= r.nightname %> - <%= r.hostusername %> (<%= r.hostname %>) - <%= r.day.getFullYear() %>/<%= r.day.getMonth() + 1%>/<%= r.day.getDay() %> </a></li>
     <% }); %>
 </ul> 
 

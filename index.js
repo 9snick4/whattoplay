@@ -10,7 +10,7 @@ app
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/getList',  (req,res) => res.render('pages/nights', {result: listNight()}))
+  .get('/getList', listNight)
   .get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/form.html')))
   .get('/getRate', (req,res) => res.render('pages/result', {result: calculateRate(req.query.letter, req.query.weight)}))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
@@ -63,13 +63,12 @@ function listNight(req, res) {
       if (err) {
           console.log("Error in query: ")
           console.log(err);
-          return false;
+          res.render ("pages/err", {error: err})
       }
 
       // Log this to the console for debugging purposes.
       console.log("Back from DB with result:");
       console.log(result.rows);
-      return result.rows;
-
+      res.render ("pages/nights", {result: result.rows})
   });  
 }

@@ -21,26 +21,46 @@ app
 function selectGame (req, res) {
   //format request string into json object
   var night = JSON.parse(req.query.night)
-  //request game collection
   
-  var options = {
-    host: "www.boardgamegeek.com",
-    path: "/xmlapi2/collectionown=1&username=" + night.hostusername,
-    method: "GET"
-  }
-  https.get(options, function(xml) {
+  res.render('pages/games', {night: night})
+  /*
+  https.get(options, function(err, result) {
+    console.log('STATUS: ' + res.statusCode);
+    console.log('HEADERS: ' + JSON.stringify(res.headers));
+    res.setEncoding('utf8');
     
-    console.log("Back from BGG with result:");
-    console.log(xml);
+    });
+
+    req.on('error', function(e) {
+      console.log('problem with request: ' + e.message);
+    });*/
+    
   
     //format xml
-    /*var jsonCollection = xml2json(xml);
+   /* var jsonCollection = xml2json(xml);
     console.log("Back from xml2json with result:");
     console.log(json);*/
     //render game page with user collection 
-  })
+  })*/
    
 }
+/*
+function httpRetry(username) {
+  console.log("username:" + username)
+  https.request("https://www.boardgamegeek.com/xmlapi2/collection=1&username=" +username, function(err, response, body) {
+    if(err || response.statusCode !== 200) {
+      console.log("fail")
+      setTimeout(httpRetry, 10000, username)
+    } 
+    else {
+      response.on('data', function (chunk) {
+        console.log('BODY: ' + chunk);
+      });
+    }
+  })
+}*/
+
+
 function calculateRate(mailType, weight) {
   switch (mailType) {
     case 's':

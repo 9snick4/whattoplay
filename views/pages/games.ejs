@@ -180,7 +180,7 @@
         })
         .done(function(data) {
          var json=xml2json(data);
-         $("#games").text(json);
+         $("#games").text(data);
         })
       }  
     var night = JSON.parse(decodeURIComponent(getQueryVariable("night")));

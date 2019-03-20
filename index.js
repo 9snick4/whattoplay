@@ -41,9 +41,9 @@ function selectGame (req, res) {
     console.log("Back from xml2json with result:");
     console.log(json);*/
     //render game page with user collection 
-  })*/
+  }
    
-}
+
 /*
 function httpRetry(username) {
   console.log("username:" + username)

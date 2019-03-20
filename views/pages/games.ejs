@@ -175,13 +175,14 @@
           if (tries < 10)
             return setTimeout(getRetry,7000,username, tries + 1);
           else
-            $("#errorMessage").text("Could not retrieve collection.");
+            $("#games").text("Could not retrieve collection.");
             return;
         })
         .done(function(data) {
-          $("#errorMessage").text(xml2json(data));
+         var json=xml2json(data);
+         $("#games").text(json);
         })
-    }
+      }  
     var night = JSON.parse(decodeURIComponent(getQueryVariable("night")));
     getRetry(night.hostusername,1);
   </script>
@@ -198,7 +199,7 @@
 </ul> 
 
 </div>
-<div id="errorMessage">
+<div id="games">
 </div>
 </body>
 </html>

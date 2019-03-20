@@ -182,7 +182,7 @@
           $("#errorMessage").text(xml2json(data));
         })
     }
-    var night = JSON.parse(getQueryVariable("night"));
+    var night = JSON.parse(decodeURIComponent(getQueryVariable("night")));
     getRetry(night.hostusername,1);
   </script>
 </head>

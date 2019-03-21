@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+  <script type="text/javascript">
+    $(function () {
+        $('#datetimepicker3').datetimepicker({
+            format: 'LT'
+        });
+    });
+</script>
+</head>
+
+<body>
+
+<% include ../partials/nav.ejs %>
+
+<div class="container">
+    <h2>Add night</h2>
+    <div class="form-group">
+        <label for="nightname">Night name</label>
+        <input type="text" name="nightname" id="nightname">
+        <label for="hostname">Host name</label>
+        <input type="text" name="hostname" id="hostname">
+        <label for="hostusername">Host Username on BGG</label>
+        <input type="text" name="hostunsername" id="hostunsername">
+        <div class='input-group date' id='datetimepicker3'>
+            <input type='text' id="date" class="form-control" />
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+            </span>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

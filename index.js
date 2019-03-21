@@ -13,10 +13,16 @@ app
   .set('view engine', 'ejs')
   .get('/getList', listNight)
   .get('/selectGame', selectGame)
+  .get('/addNight', addNight)
+  .post('/insertNight', insertNight)
+  .post('/publishChoice', publishChoice)
   .get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/form.html')))
   .get('/getRate', (req,res) => res.render('pages/result', {result: calculateRate(req.query.letter, req.query.weight)}))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
+function addNight (req,res) {
+  res.render('pages/addnight');
+}
   
 function selectGame (req, res) {
   //format request string into json object

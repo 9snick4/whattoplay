@@ -24,7 +24,22 @@ function addNight (req,res) {
   res.render('pages/addnight');
 }
 function insertNight(req,res) {
-  res.sendStatus(200);
+  var sql = "INSERT INTO night (hostusername, nightname, hostname, date) VALUES ($1,$2,$3,$4)";
+  var values = [req.query.hostusername,req.query.nightname,req.query.hostname,req.query.date];
+pg.query(sql,values, function(err, result) {
+    // If an error occurred...
+    if (err) {
+        console.log("Error in query: ")
+        console.log(err);
+        res.status(400).send(err);
+    }
+
+    // Log this to the console for debugging purposes.
+    console.log("Back from DB with result:");
+    console.log(result.rows);
+    res.sendStatus(200);
+});  
+  
 }  
 
 function publishChoice(req,res) {

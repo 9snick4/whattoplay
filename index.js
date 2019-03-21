@@ -42,7 +42,7 @@ function insertNight(req,res) {
 
 function publishChoice(req,res) {
   var sql = "INSERT INTO choice ( nightid, gameid, gamername) VALUES ($1,$2,$3)";
-  var values = [req.body.nightid,req.body.gameid,req.body.gamername];
+  var values = [req.body.night-id,req.body.game-id,req.body.gamer-name];
   console.log("values:" +  values);
   pg.query(sql,values, function(err, result) {
     // If an error occurred...

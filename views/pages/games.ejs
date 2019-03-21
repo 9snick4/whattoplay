@@ -23,10 +23,11 @@
             $("#games").text("Could not retrieve collection.");
             return;
         })
-        .done(function(data) {     
-            data.children[0].children.forEach(item => {   
-               $("#games").append($("<div>").text(item.children["name"]));
-            });
+        .done(function(data) {
+          for (let index = 0; index < data.children[0].children.length; index++) {
+            const item = data.children[0].children[index];
+            $("#games").append($("<div>").text(item.children["name"]));
+          }     
         })
       }  
     var night = JSON.parse(decodeURIComponent(getQueryVariable("night")));

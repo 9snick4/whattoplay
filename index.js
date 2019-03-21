@@ -6,8 +6,9 @@ const https = require('https')
 const pg = new Pool({connectionString: connectionString})
 const PORT = process.env.PORT || 5000
 const app = express()
-
 app
+  .use(express.json())          // to support JSON-encoded bodies
+  .use(express.urlencoded())    // to support URL-encoded bodies
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')

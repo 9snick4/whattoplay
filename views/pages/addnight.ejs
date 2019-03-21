@@ -4,7 +4,18 @@
     <% include ../partials/header.ejs %>
     <script type="text/javascript">
     function insertNight() {
-        
+        $.post("/insertNight", {
+            nightname: $("#nightname").val,
+            hostname: $("#hostname").val,
+            hostusername: $("#hostusername").val,
+            date: $("#date").val,
+        })
+        .done(function(data) {
+            $(location).attr('href','/getList?insert=y');
+        })
+        .fail(function(data) {
+            $("#error").text(data.message);
+        })
     }
     </script>
 </head>
@@ -37,8 +48,9 @@
             <input class="form-control btn-primary" type="button" value="Create" onclick="insertNight()">
         </div>
     </div>
+    <div class="error-message" id="error">
 
-
+    </div>
 </div>
 
 </body>

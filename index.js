@@ -41,6 +41,18 @@ function insertNight(req,res) {
 }  
 
 function publishChoice(req,res) {
+  var sql = "INSERT INTO choice ( nightid, gameid, gamername) VALUES ($1,$2,$3)";
+  var values = [req.body.nightid,req.body.gameid,req.body.gamername];
+  console.log("values:" +  values);
+  pg.query(sql,values, function(err, result) {
+    // If an error occurred...
+    if (err) {
+        console.log("Error in query: ")
+        console.log(err);
+        res.status(400).send(err);
+    }
+    res.sendStatus(200);
+});  
   
 }
 

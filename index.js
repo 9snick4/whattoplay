@@ -33,10 +33,6 @@ pg.query(sql,values, function(err, result) {
         console.log(err);
         res.status(400).send(err);
     }
-
-    // Log this to the console for debugging purposes.
-    console.log("Back from DB with result:");
-    console.log(result.rows);
     res.sendStatus(200);
 });  
   

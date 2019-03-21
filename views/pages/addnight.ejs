@@ -8,7 +8,7 @@
             nightname: $("#nightname").val(),
             hostname: $("#hostname").val(),
             hostusername: $("#hostusername").val(),
-            date: $("#date").val(),
+            day: $("#day").val(),
         })
         .done(function() {
             $(location).attr('href','/getList?insert=y');
@@ -37,11 +37,11 @@
         </div>
         <div class="form-group row">
             <label for="hostusername">Host Username on BGG</label>
-            <input class="form-control" type="text" name="hostunsername" id="hostunsername">
+            <input class="form-control" type="text" name="hostunsername" id="hostusername">
         </div>
         <div class="form-group row">
             <label for="date">Date</label>
-            <input class="form-control" type="datetime-local" id="date">
+            <input class="form-control" type="datetime-local" id="day">
         </div>
         <div class="form-group row">
                

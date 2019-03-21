@@ -14,7 +14,24 @@
           return(false);
     }
 
-    function getRetry(username, tries) {
+    function writeGame(item,nightId) {
+      var ul = $("<li>").addClass("games");
+      var img = $("<img>").attr("href", item.children[3].innerHTML);
+      var title = $("<div>").addClass("game-title").text(item.children[0].innerHTML);
+      var gameurl = $("<a>").attr("href", "https://boardgamegeek.com/boardgame/" + item.attributes.objectid).append(title);
+      var button = $("<input type=button>").on("click", insertGame(item.attributes.objectid,nightId))
+      ul.append(img).append(gameurl).append(button);
+      $("#games").append(ul);
+    }
+
+    function insertGame(gameID, nightId) {
+      // ask for gamername
+      //query insert db
+      //return result
+    }
+
+    function getRetry(night, tries) {
+      var username= night.hostusername;
       $.get("https://www.boardgamegeek.com/xmlapi2/collection?own=1&username=" +username)
         .fail(function() {
           if (tries < 10)
@@ -26,12 +43,12 @@
         .done(function(data) {
           for (let index = 0; index < data.children[0].children.length; index++) {
             const item = data.children[0].children[index];
-            $("#games").append($("<div>").text(item.children[0].innerHTML)); //game Name
+            writeGame(item,night.nightid); //game Name
           }     
         })
       }  
     var night = JSON.parse(decodeURIComponent(getQueryVariable("night")));
-    getRetry(night.hostusername,1);
+    getRetry(night,1);
   </script>
 </head>
 
@@ -41,12 +58,12 @@
 
 <div class="container">
 <h2>Games</h2>
-<ul>
+<ul id = "games">
     
 </ul> 
 
-</div>
-<div id="games">
+</div id = "choices">
+
 </div>
 </body>
 </html>

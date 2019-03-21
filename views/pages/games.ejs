@@ -26,7 +26,7 @@
         .done(function(data) {
           for (let index = 0; index < data.children[0].children.length; index++) {
             const item = data.children[0].children[index];
-            $("#games").append($("<div>").text(item.children["name"]));
+            $("#games").append($("<div>").text(item.children[0].innerHTML)); //game Name
           }     
         })
       }  

@@ -24,7 +24,7 @@ function addNight (req,res) {
   res.render('pages/addnight');
 }
 function insertNight(req,res) {
-  var sql = "INSERT INTO night (hostusername, nightname, hostname, date) VALUES ($1,$2,$3,$4)";
+  var sql = "INSERT INTO night (hostusername, nightname, hostname, day) VALUES ($1,$2,$3,$4)";
   var values = [req.query.hostusername,req.query.nightname,req.query.hostname,req.query.date];
 pg.query(sql,values, function(err, result) {
     // If an error occurred...

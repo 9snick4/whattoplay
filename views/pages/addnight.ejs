@@ -10,11 +10,11 @@
             hostusername: $("#hostusername").val(),
             date: $("#date").val(),
         })
-        .done(function(data) {
+        .done(function() {
             $(location).attr('href','/getList?insert=y');
         })
         .fail(function(err) {
-            $("#error").text(err);
+            $("#error").text(err.responseText);
         })
     }
     </script>

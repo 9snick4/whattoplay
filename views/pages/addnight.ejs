@@ -5,16 +5,16 @@
     <script type="text/javascript">
     function insertNight() {
         $.post("/insertNight", {
-            nightname: $("#nightname").val,
-            hostname: $("#hostname").val,
-            hostusername: $("#hostusername").val,
-            date: $("#date").val,
+            nightname: $("#nightname").val(),
+            hostname: $("#hostname").val(),
+            hostusername: $("#hostusername").val(),
+            date: $("#date").val(),
         })
         .done(function(data) {
             $(location).attr('href','/getList?insert=y');
         })
-        .fail(function(data) {
-            $("#error").text(data.message);
+        .fail(function(err) {
+            $("#error").text(err);
         })
     }
     </script>

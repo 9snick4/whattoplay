@@ -24,7 +24,7 @@ function addNight (req,res) {
   res.render('pages/addnight');
 }
 function insertNight(req,res) {
-  
+  res.sendStatus(200);
 }  
 
 function publishChoice(req,res) {

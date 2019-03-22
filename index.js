@@ -13,6 +13,7 @@ app
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/getList', listNight)
+  .get('/getChoices', getChoices)
   .get('/selectGame', selectGame)
   .get('/addNight', addNight)
   .post('/insertNight', insertNight)
@@ -20,6 +21,24 @@ app
   .get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/form.html')))
   .get('/getRate', (req,res) => res.render('pages/result', {result: calculateRate(req.query.letter, req.query.weight)}))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+function getChoices (req,res) {
+  var sql = "SELECT gameid, gamername FROM choices WHERE nightid = $1";
+  var values = [req.query.nightid];
+  pg.query(sql, values, function(err, result) {
+      // If an error occurred...
+      if (err) {
+          console.log("Error in query: ")
+          console.log(err);
+          res.render ("pages/err", {error: err})
+      }
+
+      // Log this to the console for debugging purposes.
+      console.log("Back from DB with result:");
+      console.log(result.rows);
+      res.status(200).send({result: result.rows});
+  });  
+}
 
 function addNight (req,res) {
   res.render('pages/addnight');

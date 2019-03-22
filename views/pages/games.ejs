@@ -14,6 +14,16 @@
           return(false);
     }
 
+    function writeChoice(item,gamer) {
+      var ul = $("<li>").addClass("games");
+      var img = $("<img>").attr("src", item.children[3].innerHTML).attr("alt", item.children[0].innerHTML);
+      var title = $("<div>").addClass("game-title").text(item.children[0].innerHTML);
+      var gameurl = $("<a>").attr("href", "https://boardgamegeek.com/boardgame/" + item.attributes.objectid.value).append(title);
+      var gamername =  $("<div>").addClass("game-title").text(gamer);
+      ul.append(img).append(gameurl).append(gamername);
+      $("#choices").append(ul);
+    }
+
     function writeGame(item,nightId) {
       var ul = $("<li>").addClass("games");
       var img = $("<img>").attr("src", item.children[3].innerHTML).attr("alt", item.children[0].innerHTML);
@@ -61,8 +71,19 @@
                 });     
         })
       }  
-    var night = JSON.parse(decodeURIComponent(getQueryVariable("night")));
-    getRetry(night,1);
+
+    //ONLOAD CODE
+    $( document ).ready(function() {
+      var night = JSON.parse(decodeURIComponent(getQueryVariable("night")));
+      getRetry(night,1);
+      $.get("/getChoices?nightid="+nightid)
+        .done(function(data) {
+          //fetch all games at once with a query or make a query per each game?
+          //prepare query string
+          //fetch games
+          //print game with gamername
+        })
+      }
   </script>
 </head>
 
@@ -79,9 +100,10 @@
     
 </ul> 
 
-</div id = "choices">
+<h2>Choices</h2>
+<ul id = "choices">
 
-</div>
+</ul>
 
 
 <div class="modal fade" id="gamer-name-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

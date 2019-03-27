@@ -23,7 +23,7 @@ app
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 function getChoices (req,res) {
-  var sql = "SELECT gameid, gamername FROM choices WHERE nightid = $1";
+  var sql = "SELECT gameid, gamername FROM choice WHERE nightid = $1";
   console.log(req.query.nightid);
   var values = [req.query.nightid];
   pg.query(sql, values, function(err, result) {

@@ -51,7 +51,7 @@
       $.get("https://www.boardgamegeek.com/xmlapi2/collection?own=1&username=" +username)
         .fail(function() {
           if (tries < 10)
-            return setTimeout(getRetry,7000,username, tries + 1);
+            return setTimeout(getRetry,2000,username, tries + 1);
           else
             $("#games").text("Could not retrieve collection.");
             return;
@@ -100,19 +100,15 @@
 <% include ../partials/nav.ejs %>
 
 <div class="container">
-<div id="error">
-
+  <div id="error">
+  </div>
+  <h2>Choices</h2>
+  <ul id = "choices">
+  </ul>
+  <h2>Games</h2>
+  <ul id = "games">  
+  </ul> 
 </div>
-<h2>Games</h2>
-<ul id = "games">
-    
-</ul> 
-
-<h2>Choices</h2>
-<ul id = "choices">
-
-</ul>
-
 
 <div class="modal fade" id="gamer-name-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

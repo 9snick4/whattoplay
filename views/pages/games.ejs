@@ -79,6 +79,7 @@
       $.get("/getChoices?nightid="+nightid)
         .done(function(data) {
           //fetch all games at once with a query or make a query per each game?
+          $("#choices").text(data);
           //prepare query string
           //fetch games
           //print game with gamername

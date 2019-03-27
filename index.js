@@ -24,6 +24,7 @@ app
 
 function getChoices (req,res) {
   var sql = "SELECT gameid, gamername FROM choices WHERE nightid = $1";
+  console.log(req.query.nightid);
   var values = [req.query.nightid];
   pg.query(sql, values, function(err, result) {
       // If an error occurred...

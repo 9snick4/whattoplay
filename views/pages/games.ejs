@@ -81,7 +81,7 @@
           //prepare query string
           if(data) {
             var qString = "https://www.boardgamegeek.com/xmlapi2/thing?id="
-            for (var i = 0; i < data.length; i++) {
+            for (var i = 0; i < data.result.length; i++) {
               qString+= data[i].gameid + ",";       //additional commas at the end of the querystring won't break the XML request
             }
             $.get(qString, function(xmlGames) {

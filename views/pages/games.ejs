@@ -85,7 +85,7 @@
               qString+= data.result[i].gameid + ",";       //additional commas at the end of the querystring won't break the XML request
             }
             $.get(qString, function(xmlGames) {
-              for (let index = 0; index < xmlGames.children[0].length; index++) {
+              for (let index = 0; index < xmlGames.children[0].children.length; index++) {
                 writeChoice(xmlGames.children[0].children[index], data[index].gamer)
               }
             })

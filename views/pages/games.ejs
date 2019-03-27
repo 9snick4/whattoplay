@@ -86,7 +86,7 @@
             }
             $.get(qString, function(xmlGames) {
               for (let index = 0; index < xmlGames.children[0].children.length; index++) {
-                writeChoice(xmlGames.children[0].children[index], data.result[index].gamer)
+                writeChoice(xmlGames.children[0].children[index], data.result[index].gamername)
               }
             })
           }

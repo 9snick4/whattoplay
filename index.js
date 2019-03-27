@@ -18,7 +18,7 @@ app
   .get('/addNight', addNight)
   .post('/insertNight', insertNight)
   .post('/publishChoice', publishChoice)
-  .get('/', (req, res) => res.sendFile(path.join(__dirname, 'public/form.html')))
+  .get('/', listNight)
   .get('/getRate', (req,res) => res.render('pages/result', {result: calculateRate(req.query.letter, req.query.weight)}))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 

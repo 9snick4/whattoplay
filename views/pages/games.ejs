@@ -73,7 +73,7 @@
       }  
 
     //ONLOAD CODE
-    $( document ).ready(function() {
+    $(document).ready(function() {
       var night = JSON.parse(decodeURIComponent(getQueryVariable("night")));
       getRetry(night,1);
       $.get("/getChoices?nightid="+nightid)
@@ -83,8 +83,8 @@
           //prepare query string
           //fetch games
           //print game with gamername
-        })
-      }
+        });
+    });
   </script>
 </head>
 

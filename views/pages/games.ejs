@@ -98,7 +98,7 @@
             var qString = "https://www.boardgamegeek.com/xmlapi2/thing?id=";
             let choices = data.result.map(function(obj, index, array) { 
               var rObj = {};
-              var duplicateIndex = array.slice(0,index+1).findIndex(t => t.gameid === obj.gameid);
+              var duplicateIndex = array.splice(0,index+1).findIndex(t => t.gameid === obj.gameid);
               if (duplicateIndex !== -1) //found a gameid duplicate in the array
               {
                 //merge the two elements

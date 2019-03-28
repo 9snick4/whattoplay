@@ -104,7 +104,7 @@
               for (let index = 0; index < xmlGames.children[0].children.length; index++) {
                 if (colCount = 3) {
                   colCount = 0;
-                  $("#games").append(row);
+                  $("#choices").append(row);
                   row = $("<div>").addClass("row");
                 }
                 writeChoice(xmlGames.children[0].children[index], data.result[index].gamername, row);

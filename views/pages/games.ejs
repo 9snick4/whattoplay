@@ -108,9 +108,9 @@
                 rObj[obj.gameid] = obj.gamername;
               return rObj;
             });
-            for (var i = 0; i < data.result.length; i++) {
-              
-              qString+= data.result[i].gameid + ",";       //additional commas at the end of the querystring won't break the XML request
+            var keys = choices.keys();
+            for (var i = 0; i < keys.length; i++) {
+              qString+= keys[i] + ",";       //additional commas at the end of the querystring won't break the XML request
             }
             $.get(qString, function(xmlGames) {
               var colCount = 0;

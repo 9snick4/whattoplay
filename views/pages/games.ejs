@@ -19,7 +19,7 @@
       var card = $("<div>").addClass("card");
       var img = $("<img>").attr("src", item.children[0].innerHTML).attr("alt", item.children[2].attributes.value.value).addClass("card-img-top");
       var gameurl = $("<a>").attr("href", "https://boardgamegeek.com/boardgame/" + item.attributes.id.value).addClass("card-title").text(item.children[2].attributes.value.value);
-      var gamername =  $("<div>").addClass("card-text").html("Chosen by <strong>" + gamer+ "</strong>");
+      var gamername =  $("<div>").addClass("card-text").html("Chosen by <strong>" + gamer + "</strong>");
       var body =$("<div>").addClass("card-body");
       body.append(gameurl).append(gamername);
       card.append(img).append(body);
@@ -95,8 +95,21 @@
         .done(function(data) {
           //prepare query string
           if(data) {
-            var qString = "https://www.boardgamegeek.com/xmlapi2/thing?id="
+            var qString = "https://www.boardgamegeek.com/xmlapi2/thing?id=";
+            let choices = data.result.map(function(obj, index, array) { 
+              var rObj = {};
+              var duplicateIndex = array.splice(0,index+1).findIndex(t => t.gameid === obj.gameid);
+              if (duplicateIndex !== -1) //found a gameid duplicate in the array
+              {
+                //merge the two elements
+                rObj[obj.gameid] = obj.gamername + "," + array[duplicateIndex].gamername;
+              }
+              else
+                rObj[obj.gameid] = obj.gamername;
+              return rObj;
+            });
             for (var i = 0; i < data.result.length; i++) {
+              
               qString+= data.result[i].gameid + ",";       //additional commas at the end of the querystring won't break the XML request
             }
             $.get(qString, function(xmlGames) {
@@ -109,7 +122,7 @@
                   row = $("<div>").addClass("row");
                   $("#choices").append(row);
                 }
-                writeChoice(xmlGames.children[0].children[index], data.result[index].gamername, row);
+                writeChoice(xmlGames.children[0].children[index], choices[data.result[index].gameid], row);
                 colCount++;
               }
             })

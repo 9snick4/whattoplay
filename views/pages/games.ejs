@@ -63,8 +63,8 @@
             return;
         })
         .done(function(data) {
-          var colCount = 3;
-          var row;
+          var colCount = 1;
+          var row=$("<div>").addClass("row");
           for (let index = 0; index < data.children[0].children.length; index++) {
             if (colCount = 3) {
               colCount = 0;
@@ -99,13 +99,14 @@
               qString+= data.result[i].gameid + ",";       //additional commas at the end of the querystring won't break the XML request
             }
             $.get(qString, function(xmlGames) {
-              var colCount = 3;
-              var row;
+              var colCount = 1;
+              var row = $("<div>").addClass("row");
+              $("#choices").append(row);
               for (let index = 0; index < xmlGames.children[0].children.length; index++) {
                 if (colCount = 3) {
                   colCount = 0;
-                  $("#choices").append(row);
                   row = $("<div>").addClass("row");
+                  $("#choices").append(row);
                 }
                 writeChoice(xmlGames.children[0].children[index], data.result[index].gamername, row);
                 colCount++;

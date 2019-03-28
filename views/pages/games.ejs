@@ -14,26 +14,30 @@
           return(false);
     }
 
-    function writeChoice(item,gamer) {
-      var ul = $("<div>").addClass("games").addClass("card").addClass("col-4");
+    function writeChoice(item, gamer, row) {
+      var col = $("<div>").addClass("col-sm-4");
+      var card = $("<div>").addClass("card");
       var img = $("<img>").attr("src", item.children[0].innerHTML).attr("alt", item.children[2].attributes.value.value).addClass("card-img-top");
       var gameurl = $("<a>").attr("href", "https://boardgamegeek.com/boardgame/" + item.attributes.id.value).addClass("card-title").text(item.children[2].attributes.value.value);
       var gamername =  $("<div>").addClass("card-text").html("Chosen by <strong>" + gamer+ "</strong>");
       var body =$("<div>").addClass("card-body");
       body.append(gameurl).append(gamername);
-      ul.append(img).append(body);
-      $("#choices").append(ul);
+      card.append(img).append(body);
+      col.append(card);
+      row.append(col);
     }
 
-    function writeGame(item,nightId) {
-      var ul = $("<div>").addClass("games").addClass("card").addClass("col-4").addClass("border-dark");
+    function writeGame(item, nightId, row) {
+      var col = $("<div>").addClass("col-sm-4");
+      var card = $("<div>").addClass("card").addClass("border-dark");
       var img = $("<img>").attr("src", item.children[3].innerHTML).attr("alt", item.children[0].innerHTML).addClass("card-img-top");
       var body =$("<div>").addClass("card-body");
       var gameurl = $("<a>").attr("href", "https://boardgamegeek.com/boardgame/" + item.attributes.objectid.value).addClass("card-title").text(item.children[0].innerHTML);
       var button = $("<input type=button>").val("Choose this game").attr("data-toggle","modal").attr("data-target","#gamer-name-modal").addClass("btn").addClass("btn-primary").attr("data-game-id",item.attributes.objectid.value).attr("data-night-id", nightId);
       body.append(gameurl).append(button);
-      ul.append(img).append(gameurl).append(button);
-      $("#games").append(ul);
+      card.append(img).append(gameurl).append(button);
+      col.append(card);
+      row.append(col);
     }
 
     function insertGame(form) {
@@ -59,9 +63,17 @@
             return;
         })
         .done(function(data) {
+          var colCount = 3;
+          var row;
           for (let index = 0; index < data.children[0].children.length; index++) {
+            if (colCount = 3) {
+              colCount = 0;
+              $("#games").append(row);
+              row = $("<div>").addClass("row");
+            }
             const item = data.children[0].children[index];
-            writeGame(item,night.nightid); //game Name
+            writeGame(item, night.nightid, row);
+            colCount++;
           }
           $("#gamer-name-modal").on('show.bs.modal', function (event) {
                     var button = $(event.relatedTarget); // Button that triggered the modal
@@ -87,8 +99,16 @@
               qString+= data.result[i].gameid + ",";       //additional commas at the end of the querystring won't break the XML request
             }
             $.get(qString, function(xmlGames) {
+              var colCount = 3;
+              var row;
               for (let index = 0; index < xmlGames.children[0].children.length; index++) {
-                writeChoice(xmlGames.children[0].children[index], data.result[index].gamername)
+                if (colCount = 3) {
+                  colCount = 0;
+                  $("#games").append(row);
+                  row = $("<div>").addClass("row");
+                }
+                writeChoice(xmlGames.children[0].children[index], data.result[index].gamername, row);
+                colCount++;
               }
             })
           }

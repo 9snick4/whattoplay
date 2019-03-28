@@ -35,7 +35,7 @@
       var gameurl = $("<a>").attr("href", "https://boardgamegeek.com/boardgame/" + item.attributes.objectid.value).addClass("card-title").text(item.children[0].innerHTML);
       var button = $("<input type=button>").val("Choose this game").attr("data-toggle","modal").attr("data-target","#gamer-name-modal").addClass("btn").addClass("btn-primary").attr("data-game-id",item.attributes.objectid.value).attr("data-night-id", nightId);
       body.append(gameurl).append(button);
-      card.append(img).append(gameurl).append(button);
+      card.append(img).append(body);
       col.append(card);
       row.append(col);
     }
@@ -64,12 +64,13 @@
         })
         .done(function(data) {
           var colCount = 0;
-          var row=$("<div>").addClass("row");
+          var row=$("<div>").addClass("row"); 
+          $("#games").append(row);
           for (let index = 0; index < data.children[0].children.length; index++) {
             if (colCount === 3) {
               colCount = 0;
-              $("#games").append(row);
               row = $("<div>").addClass("row");
+              $("#games").append(row);
             }
             const item = data.children[0].children[index];
             writeGame(item, night.nightid, row);

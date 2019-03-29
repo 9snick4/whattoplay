@@ -23,7 +23,7 @@ app
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 function getChoices (req,res) {
-  var sql = "SELECT gameid, string_agg(gamername, ',' ORDER BY gamername) AS gamername FROM choice WHERE nightid = $1 GROUP BY gameid";
+  var sql = "SELECT gameid, string_agg(gamername, ', ' ORDER BY gamername) AS gamername, count(*) AS numscelte FROM choice WHERE nightid = $1 GROUP BY gameid";
   console.log(req.query.nightid);
   var values = [req.query.nightid];
   pg.query(sql, values, function(err, result) {
@@ -129,7 +129,7 @@ function calculateRate(mailType, weight) {
 
 function listNight(req, res) {
 
-var sql = "SELECT * FROM night WHERE day > current_date";
+var sql = "SELECT * FROM night WHERE day >= current_date";
 
 pg.query(sql, function(err, result) {
     // If an error occurred...

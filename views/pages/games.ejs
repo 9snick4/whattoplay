@@ -18,8 +18,8 @@
       var col = $("<div>").addClass("col-sm-4").addClass("text-center");
       var card = $("<div>").addClass("card");
       var img = $("<img>").attr("src", item.children[0].innerHTML).attr("alt", item.children[2].attributes.value.value).addClass("card-img-top");
-      var gameurl = $("<a>").attr("href", "https://boardgamegeek.com/boardgame/" + item.attributes.id.value).addClass("card-title").text(item.children[2].attributes.value.value);
-      var gamername =  $("<div>").addClass("card-text").html("Chosen by <strong>" + gamer+ "</strong>");
+      var gameurl = $("<a>").attr("href", "https://boardgamegeek.com/boardgame/" + item.attributes.id.value).addClass("card-title").text(item.children[2].attributes.value.value).attr("target","_blank");
+      var gamername =  $("<div>").addClass("card-text").html("Chosen by <strong>" + gamer + "</strong>");
       var body =$("<div>").addClass("card-body");
       body.append(gameurl).append(gamername);
       card.append(img).append(body);

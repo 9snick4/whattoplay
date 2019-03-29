@@ -10,6 +10,7 @@ CREATE TABLE choice (
     choiceid SERIAL PRIMARY KEY,
     nightid INT NOT NULL REFERENCES night(nightid),
     gameid INT NOT NULL,
-    gamername VARCHAR(50)
+    gamername VARCHAR(50),
+    UNIQUE (gameid, gamername)
 );
 

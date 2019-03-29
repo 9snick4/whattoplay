@@ -79,9 +79,8 @@ function publishChoice(req,res) {
 
 function selectGame (req, res) {
   //format request string into json object
-  var night = JSON.parse(req.query.night)
-  
-  res.render('pages/games', {night: night})
+  var night = JSON.parse(req.query.night);
+  res.render('pages/games', {night: night});
   }
    
 
@@ -136,7 +135,7 @@ pg.query(sql, function(err, result) {
     if (err) {
         console.log("Error in query: ")
         console.log(err);
-        res.render ("pages/err", {error: err})
+        res.render ("pages/nights", {result: "", error: err})
     }
 
     // Log this to the console for debugging purposes.

@@ -34,8 +34,7 @@
   display:none;
 }
 
-#games .col-sm-4:hover{
-
+.row .col-sm-4:hover{
 -webkit-box-shadow: 0 2px 16px 10px #4D148F;
 box-shadow: 0 2px 16px 10px #4D148F;
 }

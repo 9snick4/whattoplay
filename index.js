@@ -82,10 +82,6 @@ function selectGame (req, res) {
   var night = JSON.parse(req.query.night);
   res.render('pages/games', {night: night});
   }
-   
-
-
-
 
 function calculateRate(mailType, weight) {
   switch (mailType) {
